@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <img [src]="selected[0]['image']" class="card-img-top w-50 p-4" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ selected[0]["title"] }}</h5>
+      <p class="card-text">{{ selected[0]["category"] }}</p>
+      <h3>{{ selected[0]["price"] | currency: "EGP" }}</h3>
+      <p>{{ selected[0]["description"] }}</p>
+    </div>
+  </div>
+</div>

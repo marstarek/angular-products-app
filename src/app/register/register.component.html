@@ -1,1 +1,107 @@
-<a href="#" class="h1">{{ title }}</a>
+<div class="container">
+  <form
+    class="d-flex flex-column p-5 align-items-center justify-content-center"
+    [formGroup]="registerForm"
+    (ngSubmit)="handleReg()"
+  >
+    <h2 class="">{{ title }}</h2>
+    <div class="form-group w-50">
+      <input
+        type="text"
+        [class.is-invalid]="name.invalid && name.touched"
+        class="form-control mt-5 w-100"
+        id="name"
+        placeholder="Enter your Name"
+        formControlName="name"
+      />
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched"
+        >*Name field is required</small
+      >
+    </div>
+    <div class="form-group w-50">
+      <input
+        type="text"
+        [class.is-invalid]="email.invalid && email.touched"
+        class="form-control mt-5 w-100"
+        id="email"
+        placeholder="Enter your Email"
+        formControlName="email"
+      />
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched"
+        >*Email field is required</small
+      >
+    </div>
+    <div class="form-group w-50">
+      <input
+        type="text"
+        [class.is-invalid]="userName.invalid && userName.touched"
+        class="form-control mt-5 w-100"
+        id="userName"
+        placeholder="Enter your User Name"
+        formControlName="userName"
+      />
+      <div [class.d-none]="userName.valid || userName.untouched">
+        <small class="text-danger" *ngIf="userName.errors?.required"
+          >*Username is required.</small
+        >
+        <small class="text-danger" *ngIf="userName.errors?.cannotContainSpace">
+          *Username can not contain space.
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-50">
+      <input
+        type="password"
+        [class.is-invalid]="password.invalid && password.touched"
+        class="form-control mt-5 w-100"
+        id="password"
+        placeholder="Enter your Password"
+        formControlName="password"
+      />
+      <div [class.d-none]="password.valid || password.untouched">
+        <small class="text-danger" *ngIf="password.errors?.required"
+          >*Password is required.</small
+        >
+        <small class="text-danger" *ngIf="password.errors?.minlength">
+          *Password must be 8 characters at least.
+        </small>
+        <small class="text-danger" *ngIf="password.errors?.pattern">
+          Password must contains at least one lowercase , one uppercase , at
+          least one digit and special character [ example : *@%$# ].
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-50">
+      <input
+        type="password"
+        [class.is-invalid]="confPassword.invalid && confPassword.touched"
+        class="form-control mt-5 w-100"
+        id="passwordConf"
+        placeholder="Confirm your Password"
+        formControlName="confPassword"
+      />
+      <small
+        class="text-danger"
+        [class.d-none]="confPassword.valid || confPassword.untouched"
+        >*Required, Please re-enter your password</small
+      >
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary w-25 mx-auto mt-5"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+
+    <!-- <div formArrayName="userAddress" *ngFor="let address of userAddress; let i = index">
+    </div> -->
+  </form>
+  <div class="text-center">
+    <button class="btn btn-primary w-25 mb-5">Add Address</button>
+    <!-- <form [formGroup]="addressFeilds"></form> -->
+  </div>
+  <p class="text-center">
+    <strong>Already a user ? <a routerLink="/login">Login</a></strong>
+  </p>
+</div>

@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss'],
 })
-export class ProductsComponent implements OnInit {
-  constructor() {}
-  title: string = 'Products';
+export class ProductDetailsComponent implements OnInit {
+  constructor(private activeroute: ActivatedRoute) {}
   products: any[] = [
     {
       id: 1,
@@ -276,5 +276,13 @@ export class ProductsComponent implements OnInit {
       },
     },
   ];
-  ngOnInit(): void {}
+
+  selected: any[] = [];
+  ngOnInit(): void {
+    this.activeroute.params.subscribe((params) => {
+      this.selected = this.products.filter(function (elm, i) {
+        return elm.id == params.id;
+      });
+    });
+  }
 }

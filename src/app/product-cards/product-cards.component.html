@@ -1,0 +1,13 @@
+<div class="card">
+  <img class="card-img-top" [src]="product.image" [alt]="product.title" />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <a
+      class="btn btn-primary"
+      [routerLink]="['/details', product.id]"
+      routerLinkActive="router-link-active"
+      >Details</a
+    >
+  </div>
+</div>

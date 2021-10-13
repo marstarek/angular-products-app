@@ -6,14 +6,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "movie-app": {
+    "products-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         },
         "@schematics/angular:application": {
-          "strict": true
+          "strict": false
         }
       },
       "root": "",
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/movie-app",
+            "outputPath": "dist/products-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "movie-app:build:production"
+              "browserTarget": "products-app:build:production"
             },
             "development": {
-              "browserTarget": "movie-app:build:development"
+              "browserTarget": "products-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "movie-app:build"
+            "browserTarget": "products-app:build"
           }
         },
         "test": {
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "movie-app"
+  "defaultProject": "products-app"
 }
