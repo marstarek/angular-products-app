@@ -1,0 +1,50 @@
+<div class="container" *ngIf="products.length != 0">
+  <table>
+    <thead>
+      <th>SN</th>
+      <th>Product Name</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Remove</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.title }}</td>
+        <td><img src="{{ item.image }}" alt="" style="width: 100px" /></td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.total }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeItem(item)">
+            Remove
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button class="btn btn-danger" (click)="emptyCart()">
+            Empty Cart
+          </button>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2">
+          <strong>Total: {{ total }}</strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  class="container d-flex flex-column align-items-center justify-content-center"
+  *ngIf="products.length == 0"
+>
+  <h2 class="h1">No Item to Show</h2>
+  <button routerLink="/" class="btn btn-primary w-25">Shop Now</button>
+</div>

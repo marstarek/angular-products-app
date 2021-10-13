@@ -2,6 +2,7 @@
   <div class="row py-5">
     <div class="card-deck col-lg-4" *ngFor="let product of products">
       <app-product-cards [product]="product"></app-product-cards>
+      <a class="btn btn-primary" (click)="addToCart(product)">Add to Cart</a>
     </div>
   </div>
 </div>
