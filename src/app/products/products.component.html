@@ -1,8 +1,10 @@
-<div class="container">
-  <div class="row py-5">
-    <div class="card-deck col-lg-4" *ngFor="let product of products">
+<div class="container-fluid d-flex">
+  <div class="row py-3 w-75">
+    <div class="card-deck col-lg-4 my-3" *ngFor="let product of products">
       <app-product-cards [product]="product"></app-product-cards>
-      <a class="btn btn-primary" (click)="addToCart(product)">Add to Cart</a>
     </div>
+  </div>
+  <div class="w-25">
+    <app-wishlist></app-wishlist>
   </div>
 </div>

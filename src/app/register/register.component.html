@@ -2,14 +2,14 @@
   <form
     class="d-flex flex-column p-5 align-items-center justify-content-center"
     [formGroup]="registerForm"
-    (ngSubmit)="handleReg()"
+    (ngSubmit)="submitReg()"
   >
     <h2 class="">{{ title }}</h2>
     <div class="form-group w-50">
       <input
         type="text"
         [class.is-invalid]="name.invalid && name.touched"
-        class="form-control mt-5 w-100"
+        class="form-control mt-3 w-100"
         id="name"
         placeholder="Enter your Name"
         formControlName="name"
@@ -22,7 +22,7 @@
       <input
         type="text"
         [class.is-invalid]="email.invalid && email.touched"
-        class="form-control mt-5 w-100"
+        class="form-control mt-3 w-100"
         id="email"
         placeholder="Enter your Email"
         formControlName="email"
@@ -35,7 +35,7 @@
       <input
         type="text"
         [class.is-invalid]="userName.invalid && userName.touched"
-        class="form-control mt-5 w-100"
+        class="form-control mt-3 w-100"
         id="userName"
         placeholder="Enter your User Name"
         formControlName="userName"
@@ -53,7 +53,7 @@
       <input
         type="password"
         [class.is-invalid]="password.invalid && password.touched"
-        class="form-control mt-5 w-100"
+        class="form-control mt-3 w-100"
         id="password"
         placeholder="Enter your Password"
         formControlName="password"
@@ -75,7 +75,7 @@
       <input
         type="password"
         [class.is-invalid]="confPassword.invalid && confPassword.touched"
-        class="form-control mt-5 w-100"
+        class="form-control mt-3 w-100"
         id="passwordConf"
         placeholder="Confirm your Password"
         formControlName="confPassword"
@@ -86,22 +86,65 @@
         >*Required, Please re-enter your password</small
       >
     </div>
+    <div
+      formArrayName="address"
+      *ngFor="let address of registerForm.controls.address.value; let i = index"
+      class="w-50"
+    >
+      <ng-container [formGroupName]="i">
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="address"
+            formControlName="address"
+            placeholder="Enter your Address"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="street"
+            formControlName="street"
+            placeholder="Enter your street"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="countery"
+            formControlName="countery"
+            placeholder="Enter your Countery"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="city"
+            formControlName="city"
+            placeholder="Enter your City"
+            class="form-control"
+          />
+        </div>
+      </ng-container>
+    </div>
+    <div class="d-flex justify-content-between buttons flex-column"></div>
+  </form>
+  <div class="buttons text-center">
+    <button class="btn btn-primary w-50 mt-3" (click)="addAddress()">
+      Add Address
+    </button>
     <button
       type="submit"
-      class="btn btn-primary w-25 mx-auto mt-5"
+      class="btn btn-primary w-50 mt-3"
       [disabled]="!registerForm.valid"
     >
-      Register
+      Sign up
     </button>
-
-    <!-- <div formArrayName="userAddress" *ngFor="let address of userAddress; let i = index">
-    </div> -->
-  </form>
-  <div class="text-center">
-    <button class="btn btn-primary w-25 mb-5">Add Address</button>
-    <!-- <form [formGroup]="addressFeilds"></form> -->
   </div>
-  <p class="text-center">
+  <p class="text-center mt-5">
     <strong>Already a user ? <a routerLink="/login">Login</a></strong>
   </p>
 </div>

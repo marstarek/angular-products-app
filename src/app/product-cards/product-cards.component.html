@@ -1,13 +1,20 @@
-<div class="card">
+<div class="card py-3">
   <img
-    class="card-img-top btn"
+    class="card-img-top btn mx-auto"
     [src]="product.image"
     [alt]="product.title"
     [routerLink]="['/details', product.id]"
     routerLinkActive="router-link-active"
   />
   <div class="card-body">
-    <h5 class="card-title">{{ product.title }}</h5>
-    <p class="card-text">{{ product.description }}</p>
+    <h5 class="card-title text-nowrap text-truncate text-center">
+      {{ product.title }}
+    </h5>
+    <p class="card-text text-nowrap text-truncate">{{ product.description }}</p>
+    <strong class="card-text">{{ product.price | currency: "EGP" }}</strong>
+  </div>
+  <div class="d-flex justify-content-around">
+    <a class="btn btn-primary w-25" (click)="addToCart(product)">Add to Cart</a>
+    <i class="far fa-heart fs-3 text-danger" (click)="addWishlist(product)"></i>
   </div>
 </div>

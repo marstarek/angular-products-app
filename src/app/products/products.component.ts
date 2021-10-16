@@ -27,7 +27,4 @@ export class ProductsComponent implements OnInit {
       .getCartWishList()
       .subscribe((count) => (this.counter = count));
   }
-  addToCart(item) {
-    this.cartService.addToCart(item);
-  }
 }

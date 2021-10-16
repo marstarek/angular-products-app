@@ -13,6 +13,9 @@ import { LoginComponent } from './login/login.component';
 import { ProductCardsComponent } from './product-cards/product-cards.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { StoreModule } from '@ngrx/store';
+import { wishlistReducer } from './store/wishlist/wishlist.reducer';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { CartComponent } from './cart/cart.component';
     ProductCardsComponent,
     ProductDetailsComponent,
     CartComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { CartComponent } from './cart/cart.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({ wishlist: wishlistReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

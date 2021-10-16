@@ -1,0 +1,33 @@
+<div class="container-fluid py-3">
+  <div
+    class="
+      header
+      text-warning
+      d-flex
+      justify-content-around
+      border border-bottom
+      mb-5
+    "
+  >
+    <h2 class="h1">Wishlist</h2>
+    <p>
+      products: <span class="fs-4">{{ total }}</span>
+    </p>
+  </div>
+  <table class="w-100">
+    <tbody>
+      <tr *ngFor="let item of products; let i = index" class="my-2 border">
+        <td><img [src]="item.image" alt="" style="width: 100px" /></td>
+        <td class="w-50">
+          {{ item.title }}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="removeWishlist(item)">
+            Remove
+          </button>
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>

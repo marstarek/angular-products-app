@@ -7,24 +7,21 @@
     <h2>{{ title }}</h2>
     <input
       type="text"
-      class="form-control mt-5 w-50"
+      class="form-control mt-3 w-50"
       id="email"
       aria-describedby="email"
       placeholder="Enter your Email"
       name="email"
       #email="ngModel"
       ngModel
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      pattern="(?!.*\.\.)(^[^\.][^@\s]+@[^@\s]+\.[^@\s\.]+$)"
       required
     />
     <span *ngIf="email.touched && !email.valid">
-      <small class="text-danger" *ngIf="email.errors?.required"
-        >*Email field is required</small
+      <small class="text-danger" *ngIf="email.errors?.required || email.errors?.pattern"
+        >*Email field is required, example@example.com</small
       >
     </span>
-    <p class="text-danger" *ngIf="email.errors?.pattern">
-      *This is not a valid Email, example@example.com
-    </p>
     <input
       type="password"
       class="form-control w-50 mt-4"
@@ -33,17 +30,11 @@
       name="pass"
       #pass="ngModel"
       ngModel
-      pattern="[(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}]"
       required
     />
     <span *ngIf="pass.touched && !pass.valid">
-      <small class="text-danger" *ngIf="pass.errors?.required"
-        >*Password field is required</small
-      >
+      <small class="text-danger" *ngIf="pass.errors?.required">*Password field is required, and must have (A-Z, a-z, 0-9, @,#,-, _, &)</small>
     </span>
-    <p class="text-success" *ngIf="pass.valid">
-      *Password must have (A-Z, a-z, 0-9, @,#,-, _, &)
-    </p>
     <button
       type="submit"
       class="btn btn-primary w-50 mt-4"

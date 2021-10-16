@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { UsernameValidator } from '../validators/username-validator';
 
 @Component({
@@ -14,7 +8,7 @@ import { UsernameValidator } from '../validators/username-validator';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  public addressFeilds: FormArray;
+  public addressFeilds;
   constructor(private fb: FormBuilder) {}
   get name() {
     return this.registerForm.get('name');
@@ -34,45 +28,42 @@ export class RegisterComponent implements OnInit {
   get userAddress() {
     return this.registerForm.get('userAddress') as FormArray;
   }
-  // addUserAddress() {
-  //   this.userAddress.push(this.fb.control(''));
-  // }
-  registerForm = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    userName: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(
-          '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
-        ),
-      ],
-    ],
-    confPassword: ['', Validators.required, Validators.minLength(8)],
-    //   userAddress: this.fb.array([
-    //     {
-    //       address: '',
-    //       street: '',
-    //       country: '',
-    //       city: '',
-    //     },
-    //   ]),
-  });
   title: string = 'Register';
+  registerForm: FormGroup;
   ngOnInit(): void {
-    this.addressFeilds = new FormArray([
-      new FormGroup({
-        address: new FormControl(''),
-        street: new FormControl(''),
-        country: new FormControl(''),
-        city: new FormControl(''),
-      }),
-    ]);
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      userName: [
+        '',
+        [Validators.required, UsernameValidator.cannotContainSpace],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
+          ),
+        ],
+      ],
+      confPassword: ['', Validators.required, Validators.minLength(8)],
+      address: this.fb.array([]),
+    });
   }
-  handleReg() {
-    console.log(this.registerForm.value);
+  addAddress() {
+    const address = this.registerForm.controls['address'] as FormArray;
+    address.push(
+      this.fb.group({
+        address: [''],
+        street: [''],
+        countery: [''],
+        city: [''],
+      })
+    );
+  }
+  submitReg() {
+    alert(this.registerForm.value);
   }
 }
