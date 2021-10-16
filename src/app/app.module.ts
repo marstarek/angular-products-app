@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
@@ -16,6 +16,8 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { StoreModule } from '@ngrx/store';
 import { wishlistReducer } from './store/wishlist/wishlist.reducer';
+import { LoadingInterceptor } from './loading.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { wishlistReducer } from './store/wishlist/wishlist.reducer';
     ProductDetailsComponent,
     CartComponent,
     WishlistComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,13 @@ import { wishlistReducer } from './store/wishlist/wishlist.reducer';
     HttpClientModule,
     StoreModule.forRoot({ wishlist: wishlistReducer }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

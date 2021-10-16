@@ -31,8 +31,4 @@ export class WishlistService {
     });
     this.wishList.next(this.wishListArr);
   }
-  // removeAllCart() {
-  //   this.wishListArr = [];
-  //   this.wishList.next(this.wishListArr);
-  // }
 }

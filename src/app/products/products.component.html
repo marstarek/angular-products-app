@@ -1,10 +1,9 @@
-<div class="container-fluid d-flex">
-  <div class="row py-3 w-75">
+<div class="container">
+  <app-loader></app-loader>
+  <div class="row py-3">
     <div class="card-deck col-lg-4 my-3" *ngFor="let product of products">
       <app-product-cards [product]="product"></app-product-cards>
     </div>
   </div>
-  <div class="w-25">
-    <app-wishlist></app-wishlist>
-  </div>
+  <div class="w-25"></div>
 </div>

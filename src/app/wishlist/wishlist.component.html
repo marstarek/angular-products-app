@@ -1,4 +1,4 @@
-<div class="container-fluid py-3">
+<div class="container py-3">
   <div
     class="
       header
@@ -14,9 +14,9 @@
       products: <span class="fs-4">{{ total }}</span>
     </p>
   </div>
-  <table class="w-100">
+  <table class="w-100 text-center">
     <tbody>
-      <tr *ngFor="let item of products; let i = index" class="my-2 border">
+      <tr *ngFor="let item of products; let i = index" class="border">
         <td><img [src]="item.image" alt="" style="width: 100px" /></td>
         <td class="w-50">
           {{ item.title }}
@@ -30,4 +30,17 @@
       <tr></tr>
     </tbody>
   </table>
+  <div
+    class="
+      container
+      d-flex
+      flex-column
+      align-items-center
+      justify-content-center
+    "
+    *ngIf="products.length == 0"
+  >
+    <h2 class="h1">No Wishlist to Show</h2>
+    <button routerLink="/" class="btn btn-primary w-25">Add Now</button>
+  </div>
 </div>
