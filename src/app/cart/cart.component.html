@@ -1,23 +1,22 @@
-<div class="container" *ngIf="products.length != 0">
+<div class="container mt-5 pt-5" *ngIf="products.length != 0">
   <table>
     <thead>
-      <th>SN</th>
       <th>Product Name</th>
       <th>Image</th>
       <th>Description</th>
-      <th>Quantity</th>
-      <th>Total</th>
+      <th>Price</th>
+      <th>Quentity</th>
       <th>Remove</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of products; let i = index">
-        <td>{{ i + 1 }}</td>
         <td>{{ item.title }}</td>
         <td><img src="{{ item.image }}" alt="" style="width: 100px" /></td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.total }}</td>
+        <td class="px-2">{{ item.description }}</td>
+        <td class="px-2">{{ item.price }}</td>
+        <td>
+          {{ i + 1 }}
+        </td>
         <td>
           <button class="btn btn-danger" (click)="removeItem(item)">
             Remove
@@ -42,7 +41,15 @@
 </div>
 
 <div
-  class="container d-flex flex-column align-items-center justify-content-center"
+  class="
+    container
+    mt-5
+    pt-5
+    d-flex
+    flex-column
+    align-items-center
+    justify-content-center
+  "
   *ngIf="products.length == 0"
 >
   <h2 class="h1 pt-5">No Item to Show</h2>

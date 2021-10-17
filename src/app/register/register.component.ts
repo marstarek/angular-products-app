@@ -38,16 +38,7 @@ export class RegisterComponent implements OnInit {
         '',
         [Validators.required, UsernameValidator.cannotContainSpace],
       ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
-          ),
-        ],
-      ],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confPassword: ['', Validators.required, Validators.minLength(8)],
       address: this.fb.array([]),
     });

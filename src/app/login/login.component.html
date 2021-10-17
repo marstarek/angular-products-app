@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <form
     class="d-flex flex-column p-5 align-items-center justify-content-center"
     #loginInfo="ngForm"
@@ -18,7 +18,9 @@
       required
     />
     <span *ngIf="email.touched && !email.valid">
-      <small class="text-danger" *ngIf="email.errors?.required || email.errors?.pattern"
+      <small
+        class="text-danger"
+        *ngIf="email.errors?.required || email.errors?.pattern"
         >*Email field is required, example@example.com</small
       >
     </span>
@@ -33,7 +35,10 @@
       required
     />
     <span *ngIf="pass.touched && !pass.valid">
-      <small class="text-danger" *ngIf="pass.errors?.required">*Password field is required, and must have (A-Z, a-z, 0-9, @,#,-, _, &)</small>
+      <small class="text-danger" *ngIf="pass.errors?.required"
+        >*Password field is required, and must have (A-Z, a-z, 0-9, @,#,-, _,
+        &)</small
+      >
     </span>
     <button
       type="submit"
